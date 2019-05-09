@@ -124,13 +124,13 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Users usersData = dataSnapshot.child(parentDbName).child(email).getValue(Users.class);
 
-                    if (usersData.getEmail().equals(email))
+                    if (usersData.getInputEmail().equals(email))
                     {
-                        if (usersData.getPassword().equals(password))
+                        if (usersData.getInputPassword().equals(password))
                         {
                             if (parentDbName.equals("Admins"))
                             {
-                                Toast.makeText(LoginActivity.this, "Welcome Admin, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "welcome Admin, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
                                 Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
