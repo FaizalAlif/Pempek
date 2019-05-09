@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1082791628672",
+    "firebase_url": "https://firebeast.firebaseio.com",
+    "project_id": "firebeast",
+    "storage_bucket": "firebeast.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082791628672:android:84de3d6db49b2f06",
+        "android_client_info": {
+          "package_name": "com.example.pempek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082791628672-ljegddpghvg0ko3uoqel3urtakhp6co4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pempek",
+            "certificate_hash": "4d0d4e39b12ea745199296fe45bb4374a0241993"
+          }
+        },
+        {
+          "client_id": "1082791628672-ioks2nnacgtl04i4uu720bfjds81c3e5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3IZNQKOZ77nMKYWfsQjzoomwJHtmQotk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082791628672-ioks2nnacgtl04i4uu720bfjds81c3e5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
