@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import io.paperdb.Paper;
 public class LoginActivity extends AppCompatActivity {
-    private EditText InputEmail, InputPassword;
+    private EditText InputUsername, InputPassword;
     private Button LoginButton;
     private ProgressDialog loadingBar;
     private TextView AdminLink, NotAdminLink;
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         LoginButton = findViewById(R.id.login_btn);
         InputPassword =  findViewById(R.id.login_password_input);
-        InputEmail =  findViewById(R.id.login_email);
+        InputUsername =  findViewById(R.id.login_username);
         AdminLink =  findViewById(R.id.admin_panel_link);
         NotAdminLink =  findViewById(R.id.not_admin_panel_link);
         loadingBar = new ProgressDialog(this);
@@ -78,10 +78,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void LoginUser()
     {
-        String phone = InputEmail.getText().toString();
+        String username = InputUsername.getText().toString();
         String password = InputPassword.getText().toString();
 
-        if (TextUtils.isEmpty(phone))
+        if (TextUtils.isEmpty(username))
         {
             Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
         }
@@ -97,17 +97,17 @@ public class LoginActivity extends AppCompatActivity {
             loadingBar.show();
 
 
-            AllowAccessToAccount(phone, password);
+            AllowAccessToAccount(username, password);
         }
     }
 
 
 
-    private void AllowAccessToAccount(final String email, final String password)
+    private void AllowAccessToAccount(final String username, final String password)
     {
         if(RememberMe.isChecked())
         {
-            Paper.book().write(Prevalent.UserEmailKey, email);
+            Paper.book().write(Prevalent.UserUsernameKey, username);
             Paper.book().write(Prevalent.UserPasswordKey, password);
         }
 
@@ -120,11 +120,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if (dataSnapshot.child(parentDbName).child(email).exists())
+                if (dataSnapshot.child(parentDbName).child(username).exists())
                 {
-                    Users usersData = dataSnapshot.child(parentDbName).child(email).getValue(Users.class);
+                    Users usersData = dataSnapshot.child(parentDbName).child(username).getValue(Users.class);
 
-                    if (usersData.getInputEmail().equals(email))
+                    if (usersData.getInputEmail().equals(username))
                     {
                         if (usersData.getInputPassword().equals(password))
                         {
@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Account with this " + email + " email do not exists.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Account with this " + username + " username do not exists.", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }

@@ -3,14 +3,14 @@ package com.example.pempek.Model;
 
     public class Users
     {
-        private String InputName, InputEmail, InputPassword;
+        private String InputUsername, InputEmail, InputPassword;
         public Users(){
 
         }
 
-        public Users(String InputName,String InputEmail,String InputPassword){
-            this.InputName = InputName;
-            this.InputEmail = InputEmail;
+        public Users(String InputName,String InputUsername,String InputPassword){
+            this.InputUsername = InputName;
+            this.InputEmail = InputUsername;
             this.InputPassword = InputPassword;
         }
 
@@ -22,8 +22,8 @@ package com.example.pempek.Model;
             return InputPassword;
         }
 
-        public String getInputName() {
-            return InputName;
+        public String getInputUsername() {
+            return InputUsername;
         }
     }
 

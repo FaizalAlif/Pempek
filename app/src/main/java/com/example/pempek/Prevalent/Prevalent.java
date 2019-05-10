@@ -6,7 +6,7 @@ import com.example.pempek.Model.Users;
     {
         public static Users currentOnlineUser;
 
-        public static final String UserEmailKey = "UserEmail";
+        public static final String UserUsernameKey = "UserName";
         public static final String UserPasswordKey = "UserPassword";
     }
 

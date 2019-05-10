@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button CreateAccountButton;
-    private EditText InputName, InputEmail, InputPassword;
+    private EditText InputUsername, InputEmail, InputPassword;
     private ProgressDialog loadingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         CreateAccountButton = (Button) findViewById(R.id.register_btn);
-        InputName = (EditText) findViewById(R.id.register_username_input);
+        InputUsername = (EditText) findViewById(R.id.register_username_input);
         InputPassword = (EditText) findViewById(R.id.register_password_input);
         InputEmail = (EditText) findViewById(R.id.register_email);
         loadingBar = new ProgressDialog(this);
@@ -44,11 +44,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void CreateAccountButton() {
-        String name = InputName.getText().toString();
+        String username = InputUsername.getText().toString();
         String email = InputEmail.getText().toString();
         String password = InputPassword.getText().toString();
 
-        if (TextUtils.isEmpty(name))
+        if (TextUtils.isEmpty(username))
         {
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
         }
@@ -67,11 +67,11 @@ public class RegisterActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            Validate(name, email, password);
+            Validate(username, email, password);
         }
     }
 
-    private void Validate(final String name, final String email, final String password)
+    private void Validate(final String username, final String email, final String password)
     {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -80,14 +80,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if (!(dataSnapshot.child("Users").child(email).exists()))
+                if (!(dataSnapshot.child("Users").child(username).exists()))
                 {
                     HashMap<String, Object> userdataMap = new HashMap<>();
                     userdataMap.put("email", email);
                     userdataMap.put("password", password);
-                    userdataMap.put("name", name);
+                    userdataMap.put("name", username);
 
-                    RootRef.child("Users").child(email).updateChildren(userdataMap)
+                    RootRef.child("Users").child(username).updateChildren(userdataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task)

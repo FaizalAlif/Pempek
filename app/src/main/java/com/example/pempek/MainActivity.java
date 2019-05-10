@@ -50,14 +50,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String UserPhoneKey = Paper.book().read(Prevalent.UserEmailKey);
+        String UserUsername = Paper.book().read(Prevalent.UserUsernameKey);
         String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
 
-        if (UserPhoneKey != "" && UserPasswordKey != "")
+        if (UserUsername != "" && UserPasswordKey != "")
         {
-            if (!TextUtils.isEmpty(UserPhoneKey)  &&  !TextUtils.isEmpty(UserPasswordKey))
+            if (!TextUtils.isEmpty(UserUsername)  &&  !TextUtils.isEmpty(UserPasswordKey))
             {
-                AllowAccess(UserPhoneKey, UserPasswordKey);
+                AllowAccess(UserUsername, UserPasswordKey);
 
                 loadingBar.setTitle("Already Logged in");
                 loadingBar.setMessage("Please wait.....");

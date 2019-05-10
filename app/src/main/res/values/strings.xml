@@ -10,6 +10,6 @@
     <string name="find_discover_choose_and_buy_anything_online">Find, Discover, Choose and Buy anything online.</string>
     <string name="already_have_an_account_login">Already have an Account? Login</string>
     <string name="join_now">Join Now</string>
-    <string name="e_mail">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
 </resources>
