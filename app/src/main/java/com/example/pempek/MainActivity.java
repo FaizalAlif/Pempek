@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void AllowAccess(final String email, final String password)
+    private void AllowAccess(final String username, final String password)
     {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if (dataSnapshot.child("Users").child(email).exists())
+                if (dataSnapshot.child("Users").child(username).exists())
                 {
-                    Users usersData = dataSnapshot.child("Users").child(email).getValue(Users.class);
+                    Users usersData = dataSnapshot.child("Users").child(username).getValue(Users.class);
 
-                    if (usersData.getInputEmail().equals(email))
+                    if (usersData.getInputUsername().equals(username))
                     {
                         if (usersData.getInputPassword().equals(password))
                         {
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this, "Account with this " + email + " e-mail do not exists.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Account with this " + username + " username do not exists.", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }

@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Users usersData = dataSnapshot.child(parentDbName).child(username).getValue(Users.class);
 
-                    if (usersData.getInputEmail().equals(username))
+                    if (usersData.getInputUsername().equals(username))
                     {
                         if (usersData.getInputPassword().equals(password))
                         {
