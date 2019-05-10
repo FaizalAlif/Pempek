@@ -30,10 +30,10 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        CreateAccountButton = (Button) findViewById(R.id.register_btn);
-        InputUsername = (EditText) findViewById(R.id.register_username_input);
-        InputPassword = (EditText) findViewById(R.id.register_password_input);
-        InputEmail = (EditText) findViewById(R.id.register_email);
+        CreateAccountButton = findViewById(R.id.register_btn);
+        InputUsername =  findViewById(R.id.register_username_input);
+        InputPassword =  findViewById(R.id.register_password_input);
+        InputEmail =  findViewById(R.id.register_email);
         loadingBar = new ProgressDialog(this);
     CreateAccountButton.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(RegisterActivity.this, "This " + email + " already exists.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "This " + username + "username already exists.", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Please try again using another e-mail.", Toast.LENGTH_SHORT).show();
 
