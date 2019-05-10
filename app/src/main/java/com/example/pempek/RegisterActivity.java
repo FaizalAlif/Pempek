@@ -20,30 +20,41 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity
+{
     private Button CreateAccountButton;
-    private EditText InputUsername, InputEmail, InputPassword;
+    private EditText InputEmail, InputUsername, InputPassword;
     private ProgressDialog loadingBar;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
 
-        CreateAccountButton = findViewById(R.id.register_btn);
-        InputUsername =  findViewById(R.id.register_username_input);
-        InputPassword =  findViewById(R.id.register_password_input);
-        InputEmail =  findViewById(R.id.register_email);
+        CreateAccountButton = (Button) findViewById(R.id.register_btn);
+        InputUsername = (EditText) findViewById(R.id.register_username);
+        InputEmail = (EditText) findViewById(R.id.register_email);
+        InputPassword = (EditText) findViewById(R.id.register_password);
+
         loadingBar = new ProgressDialog(this);
-    CreateAccountButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            CreateAccountButton();
-        }
-    });
+
+
+        CreateAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                CreateAccount();
+            }
+        });
     }
 
-    private void CreateAccountButton() {
+
+
+    private void CreateAccount()
+    {
         String username = InputUsername.getText().toString();
         String email = InputEmail.getText().toString();
         String password = InputPassword.getText().toString();
@@ -52,9 +63,9 @@ public class RegisterActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(email))
+        else if (TextUtils.isEmpty(username))
         {
-            Toast.makeText(this, "Please write your e-mail...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(password))
         {
@@ -67,11 +78,13 @@ public class RegisterActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            Validate(username, email, password);
+            ValidatephoneNumber(email, username, password);
         }
     }
 
-    private void Validate(final String username, final String email, final String password)
+
+
+    private void ValidatephoneNumber(final String email, final String username, final String password)
     {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -83,9 +96,9 @@ public class RegisterActivity extends AppCompatActivity {
                 if (!(dataSnapshot.child("Users").child(username).exists()))
                 {
                     HashMap<String, Object> userdataMap = new HashMap<>();
-                    userdataMap.put("email", email);
+                    userdataMap.put("username", username);
                     userdataMap.put("password", password);
-                    userdataMap.put("name", username);
+                    userdataMap.put("email", email);
 
                     RootRef.child("Users").child(username).updateChildren(userdataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -110,9 +123,9 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(RegisterActivity.this, "This " + username + "username already exists.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "This " + username + " already exists.", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Please try again using another e-mail.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Please try again using another phone number.", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);
