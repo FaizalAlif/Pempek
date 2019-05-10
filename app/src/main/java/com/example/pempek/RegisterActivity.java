@@ -34,10 +34,10 @@ public class RegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_register);
 
 
-        CreateAccountButton = (Button) findViewById(R.id.register_btn);
-        InputUsername = (EditText) findViewById(R.id.register_username);
-        InputEmail = (EditText) findViewById(R.id.register_email);
-        InputPassword = (EditText) findViewById(R.id.register_password);
+        CreateAccountButton =  findViewById(R.id.register_btn);
+        InputUsername =  findViewById(R.id.register_username);
+        InputEmail =  findViewById(R.id.register_email);
+        InputPassword =  findViewById(R.id.register_password);
 
         loadingBar = new ProgressDialog(this);
 
@@ -63,9 +63,9 @@ public class RegisterActivity extends AppCompatActivity
         {
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(username))
+        else if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write your email number...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(password))
         {
@@ -78,13 +78,13 @@ public class RegisterActivity extends AppCompatActivity
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            ValidatephoneNumber(email, username, password);
+            Validate(email, username, password);
         }
     }
 
 
 
-    private void ValidatephoneNumber(final String email, final String username, final String password)
+    private void Validate(final String email, final String username, final String password)
     {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
